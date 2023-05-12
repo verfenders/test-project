@@ -1,20 +1,31 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
+import { FirebaseContext } from "../../context/firebase/FirebaseContext";
 import Form from "../form/Form";
 import Notes from "../notes/Notes";
-
+import Spinner from "../spinner/Spinner"
 
 
 const MainPage = () => {
-    const notes = new Array(3)
-        .fill("check")
-        .map((_, i) => ({ id: i, title: `Note ${i + 1}` }))
+
+
+    const { loading, notes, fetchNotes, removeNote } = useContext(FirebaseContext)
+
+    useEffect(() => {
+        fetchNotes()
+        // eslint-disable-next-line 
+    }, [])
 
     return (
 
         <Fragment>
             <Form />
+
             <hr />
-            <Notes notes={notes} />
+
+            {loading
+                ? <Spinner />
+                : <Notes notes={notes} onRemove={removeNote} />
+            }
         </Fragment>
     )
 
