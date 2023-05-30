@@ -2,7 +2,7 @@
 import { lazy, Suspense } from "react";
 // import AppHeader from "../appHeader/AppHeader";
 import Spinner from "../spinner/Spinner";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../navbar/Navbar_panel";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Alert from "../alert/Alert";
@@ -20,7 +20,6 @@ function App() {
         <Router>
           <div className="app">
             <Navbar />
-
             <Suspense fallback={Spinner}>
               <div className="container pt-4">
                 <Alert />
